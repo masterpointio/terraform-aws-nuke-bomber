@@ -175,8 +175,8 @@ module "container_definition" {
 
 resource "aws_ecs_task_definition" "default" {
   family                   = module.base_label.id
-  task_role_arn            = ""
-  execution_role_arn       = ""
+  task_role_arn            = aws_iam_role.ecs_task.arn
+  execution_role_arn       = aws_iam_role.ecs_exec.arn
   container_definitions    = module.container_definition.json
   cpu                      = 256
   memory                   = 512

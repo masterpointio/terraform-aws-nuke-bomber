@@ -85,7 +85,7 @@ variable "container_memory_reservation" {
 }
 
 variable "container_cpu" {
-  default     = 512
+  default     = 256
   type        = number
   description = "The container's CPU for the bomber task."
 }
