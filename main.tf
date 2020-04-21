@@ -100,6 +100,15 @@ module "subnets" {
   nat_instance_enabled = ! var.nat_gateway_enabled
 }
 
+resource "aws_security_group_rule" "allow_egress" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.vpc.vpc_default_security_group_id
+}
+
 ## SUPPORTING
 ##############
 

@@ -67,7 +67,7 @@ variable "nat_gateway_enabled" {
 #######
 
 variable "command" {
-  default     = ["cloud-nuke", "aws", "--dry-run"]
+  default     = ["/usr/local/bin/aws-nuke", "-c", "/home/aws-nuke/nuke-config.yml"]
   type        = list(string)
   description = "The CMD to execute on the ECS container. Override this to actually execute the nuke."
 }
