@@ -29,7 +29,7 @@ module "base_label" {
   namespace = var.namespace
   stage     = var.stage
   name      = var.name
-  tags      = var.tags
+  tags      = merge({ Protected = "true" }, var.tags)
 }
 
 module "task_label" {
@@ -38,7 +38,7 @@ module "task_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["task"]
-  tags       = var.tags
+  tags       = merge({ Protected = "true" }, var.tags)
 }
 
 module "exec_label" {
@@ -47,7 +47,7 @@ module "exec_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["exec"]
-  tags       = var.tags
+  tags       = merge({ Protected = "true" }, var.tags)
 }
 
 module "cloudwatch_label" {
@@ -56,7 +56,7 @@ module "cloudwatch_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["cloudwatch"]
-  tags       = var.tags
+  tags       = merge({ Protected = "true" }, var.tags)
 }
 
 module "event_label" {
@@ -65,7 +65,7 @@ module "event_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["event"]
-  tags       = var.tags
+  tags       = merge({ Protected = "true" }, var.tags)
 }
 
 module "log_group_label" {
@@ -74,7 +74,7 @@ module "log_group_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["logs"]
-  tags       = var.tags
+  tags       = merge({ Protected = "true" }, var.tags)
 }
 
 ## NETWORK
@@ -133,15 +133,15 @@ resource "aws_cloudwatch_event_target" "default" {
   rule      = aws_cloudwatch_event_rule.default.name
   role_arn  = aws_iam_role.ecs_events.arn
 
-  ecs_target = {
+  ecs_target {
     launch_type         = "FARGATE"
     task_count          = 1
     task_definition_arn = aws_ecs_task_definition.default.arn
     platform_version    = "LATEST"
-    network_configuration = {
+    network_configuration {
       assign_public_ip = false
       security_groups  = [module.vpc.vpc_default_security_group_id]
-      subnets          = [module.subnets.private_subnet_ids]
+      subnets          = module.subnets.private_subnet_ids
     }
   }
 }
@@ -165,7 +165,6 @@ module "container_definition" {
   log_configuration = {
     logDriver = "awslogs"
     options = {
-      awslogs-create-group  = false
       awslogs-group         = module.log_group_label.id
       awslogs-region        = var.region,
       awslogs-stream-prefix = "bomber"
@@ -210,14 +209,10 @@ resource "aws_iam_role" "ecs_task" {
   tags               = module.task_label.tags
 }
 
-# Is this a bad idea? Yeah likely... I'm open to suggestions on this one.
-data "aws_iam_policy" "ecs_task_admin" {
-  arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
-
 resource "aws_iam_role_policy_attachment" "ecs_task_admin" {
-  role       = aws_iam_role.ecs_task.name
-  policy_arn = aws_iam_policy.ecs_task_admin.arn
+  role = aws_iam_role.ecs_task.name
+  # NOTE: Is this a bad idea? Yeah likely... I'm open to suggestions on this one.
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 # Exec Role
@@ -230,12 +225,8 @@ resource "aws_iam_role" "ecs_exec" {
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_task_execution" {
-  role       = aws_iam_role.ecs_task_execution.name
-  policy_arn = aws_iam_policy.ecs_task_execution.arn
-}
-
-data "aws_iam_policy" "ecs_task_execution" {
-  arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+  role       = aws_iam_role.ecs_exec.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
 # CloudWatch Role
@@ -260,9 +251,5 @@ resource "aws_iam_role" "ecs_events" {
 
 resource "aws_iam_role_policy_attachment" "ecs_events" {
   role       = aws_iam_role.ecs_events.name
-  policy_arn = aws_iam_policy.ecs_events.arn
-}
-
-data "aws_iam_policy" "ecs_events" {
-  arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
 }
