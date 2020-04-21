@@ -1,0 +1,889 @@
+---
+regions:
+- us-east-2
+- us-east-1
+- us-west-1
+- us-west-2
+- ap-east-1
+- ap-south-1
+- ap-northeast-3
+- ap-northeast-2
+- ap-southeast-1
+- ap-southeast-2
+- ap-northeast-1
+- ca-central-1
+- eu-central-1
+- eu-west-1
+- eu-west-2
+- eu-west-3
+- eu-north-1
+- me-south-1
+- sa-east-1
+
+account-blacklist:
+- 1234567890
+
+accounts:
+  "ACCOUNT_ID_TO_NUKE":
+    filters:
+      ACMCertificate:
+      - property: "tag:Protected"
+        value: "true"
+      ACMPCACertificateAuthority:
+      - property: "tag:Protected"
+        value: "true"
+      ACMPCACertificateAuthorityState:
+      - property: "tag:Protected"
+        value: "true"
+      APIGatewayAPIKey:
+      - property: "tag:Protected"
+        value: "true"
+      APIGatewayClientCertificate:
+      - property: "tag:Protected"
+        value: "true"
+      APIGatewayDomainName:
+      - property: "tag:Protected"
+        value: "true"
+      APIGatewayRestAPI:
+      - property: "tag:Protected"
+        value: "true"
+      APIGatewayUsagePlan:
+      - property: "tag:Protected"
+        value: "true"
+      APIGatewayVpcLink:
+      - property: "tag:Protected"
+        value: "true"
+      AWSBackupPlan:
+      - property: "tag:Protected"
+        value: "true"
+      AWSBackupRecoveryPoint:
+      - property: "tag:Protected"
+        value: "true"
+      AWSBackupSelection:
+      - property: "tag:Protected"
+        value: "true"
+      AWSBackupVault:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamDirectoryConfig:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamFleet:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamFleetState:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamImage:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamImageBuilder:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamImageBuilderWaiter:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamStack:
+      - property: "tag:Protected"
+        value: "true"
+      AppStreamStackFleetAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      AutoScalingGroup:
+      - property: "tag:Protected"
+        value: "true"
+      AutoScalingPlansScalingPlan:
+      - property: "tag:Protected"
+        value: "true"
+      BatchComputeEnvironment:
+      - property: "tag:Protected"
+        value: "true"
+      BatchComputeEnvironmentState:
+      - property: "tag:Protected"
+        value: "true"
+      BatchJobQueue:
+      - property: "tag:Protected"
+        value: "true"
+      BatchJobQueueState:
+      - property: "tag:Protected"
+        value: "true"
+      Cloud9Environment:
+      - property: "tag:Protected"
+        value: "true"
+      CloudDirectoryDirectory:
+      - property: "tag:Protected"
+        value: "true"
+      CloudDirectorySchema:
+      - property: "tag:Protected"
+        value: "true"
+      CloudFormationStack:
+      - property: "tag:Protected"
+        value: "true"
+      CloudFrontDistribution:
+      - property: "tag:Protected"
+        value: "true"
+      CloudFrontDistributionDeployment:
+      - property: "tag:Protected"
+        value: "true"
+      CloudHSMV2Cluster:
+      - property: "tag:Protected"
+        value: "true"
+      CloudHSMV2ClusterHSM:
+      - property: "tag:Protected"
+        value: "true"
+      CloudSearchDomain:
+      - property: "tag:Protected"
+        value: "true"
+      CloudTrailTrail:
+      - property: "tag:Protected"
+        value: "true"
+      CloudWatchAlarm:
+      - property: "tag:Protected"
+        value: "true"
+      CloudWatchDashboard:
+      - property: "tag:Protected"
+        value: "true"
+      CloudWatchEventsRule:
+      - property: "tag:Protected"
+        value: "true"
+      CloudWatchEventsTarget:
+      - property: "tag:Protected"
+        value: "true"
+      CloudWatchLogsDestination:
+      - property: "tag:Protected"
+        value: "true"
+      CloudWatchLogsLogGroup:
+      - property: "tag:Protected"
+        value: "true"
+      CodeBuildProject:
+      - property: "tag:Protected"
+        value: "true"
+      CodeCommitRepository:
+      - property: "tag:Protected"
+        value: "true"
+      CodeDeployApplication:
+      - property: "tag:Protected"
+        value: "true"
+      CodePipelinePipeline:
+      - property: "tag:Protected"
+        value: "true"
+      CodeStarProject:
+      - property: "tag:Protected"
+        value: "true"
+      CognitoIdentityPool:
+      - property: "tag:Protected"
+        value: "true"
+      CognitoUserPool:
+      - property: "tag:Protected"
+        value: "true"
+      CognitoUserPoolDomain:
+      - property: "tag:Protected"
+        value: "true"
+      ConfigServiceConfigRule:
+      - property: "tag:Protected"
+        value: "true"
+      ConfigServiceConfigurationRecorder:
+      - property: "tag:Protected"
+        value: "true"
+      ConfigServiceDeliveryChannel:
+      - property: "tag:Protected"
+        value: "true"
+      DAXCluster:
+      - property: "tag:Protected"
+        value: "true"
+      DAXParameterGroup:
+      - property: "tag:Protected"
+        value: "true"
+      DAXSubnetGroup:
+      - property: "tag:Protected"
+        value: "true"
+      DataPipelinePipeline:
+      - property: "tag:Protected"
+        value: "true"
+      DatabaseMigrationServiceCertificate:
+      - property: "tag:Protected"
+        value: "true"
+      DatabaseMigrationServiceEndpoint:
+      - property: "tag:Protected"
+        value: "true"
+      DatabaseMigrationServiceEventSubscription:
+      - property: "tag:Protected"
+        value: "true"
+      DatabaseMigrationServiceReplicationInstance:
+      - property: "tag:Protected"
+        value: "true"
+      DatabaseMigrationServiceReplicationTask:
+      - property: "tag:Protected"
+        value: "true"
+      DatabaseMigrationServiceSubnetGroup:
+      - property: "tag:Protected"
+        value: "true"
+      DeviceFarmProject:
+      - property: "tag:Protected"
+        value: "true"
+      DirectoryServiceDirectory:
+      - property: "tag:Protected"
+        value: "true"
+      DynamoDBTable:
+      - property: "tag:Protected"
+        value: "true"
+      DynamoDBTableItem:
+      - property: "tag:Protected"
+        value: "true"
+      EC2Address:
+      - property: "tag:Protected"
+        value: "true"
+      EC2ClientVpnEndpoint:
+      - property: "tag:Protected"
+        value: "true"
+      EC2ClientVpnEndpointAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      EC2CustomerGateway:
+      - property: "tag:Protected"
+        value: "true"
+      EC2DHCPOption:
+      - property: "tag:Protected"
+        value: "true"
+      EC2Image:
+      - property: "tag:Protected"
+        value: "true"
+      EC2Instance:
+      - property: "tag:Protected"
+        value: "true"
+      EC2InternetGateway:
+      - property: "tag:Protected"
+        value: "true"
+      EC2InternetGatewayAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      EC2KeyPair:
+      - property: "tag:Protected"
+        value: "true"
+      EC2LaunchTemplate:
+      - property: "tag:Protected"
+        value: "true"
+      EC2NATGateway:
+      - property: "tag:Protected"
+        value: "true"
+      EC2NetworkACL:
+      - property: "tag:Protected"
+        value: "true"
+      EC2NetworkInterface:
+      - property: "tag:Protected"
+        value: "true"
+      EC2PlacementGroup:
+      - property: "tag:Protected"
+        value: "true"
+      EC2RouteTable:
+      - property: "tag:Protected"
+        value: "true"
+      EC2SecurityGroup:
+      - property: "tag:Protected"
+        value: "true"
+      EC2Snapshot:
+      - property: "tag:Protected"
+        value: "true"
+      EC2SpotFleetRequest:
+      - property: "tag:Protected"
+        value: "true"
+      EC2Subnet:
+      - property: "tag:Protected"
+        value: "true"
+      EC2TGW:
+      - property: "tag:Protected"
+        value: "true"
+      EC2TGWAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      EC2VPC:
+      - property: "tag:Protected"
+        value: "true"
+      EC2VPCEndpoint:
+      - property: "tag:Protected"
+        value: "true"
+      EC2VPCEndpointServiceConfiguration:
+      - property: "tag:Protected"
+        value: "true"
+      EC2VPCPeeringConnection:
+      - property: "tag:Protected"
+        value: "true"
+      EC2VPNConnection:
+      - property: "tag:Protected"
+        value: "true"
+      EC2VPNGateway:
+      - property: "tag:Protected"
+        value: "true"
+      EC2VPNGatewayAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      EC2Volume:
+      - property: "tag:Protected"
+        value: "true"
+      ECRRepository:
+      - property: "tag:Protected"
+        value: "true"
+      ECSCluster:
+      - property: "tag:Protected"
+        value: "true"
+      ECSClusterInstance:
+      - property: "tag:Protected"
+        value: "true"
+      ECSService:
+      - property: "tag:Protected"
+        value: "true"
+      ECSTaskDefinition:
+      - property: "tag:Protected"
+        value: "true"
+      EFSFileSystem:
+      - property: "tag:Protected"
+        value: "true"
+      EFSMountTarget:
+      - property: "tag:Protected"
+        value: "true"
+      EKSCluster:
+      - property: "tag:Protected"
+        value: "true"
+      ELB:
+      - property: "tag:Protected"
+        value: "true"
+      ELBv2:
+      - property: "tag:Protected"
+        value: "true"
+      ELBv2TargetGroup:
+      - property: "tag:Protected"
+        value: "true"
+      EMRCluster:
+      - property: "tag:Protected"
+        value: "true"
+      EMRSecurityConfiguration:
+      - property: "tag:Protected"
+        value: "true"
+      ESDomain:
+      - property: "tag:Protected"
+        value: "true"
+      ElasticBeanstalkApplication:
+      - property: "tag:Protected"
+        value: "true"
+      ElasticBeanstalkEnvironment:
+      - property: "tag:Protected"
+        value: "true"
+      ElasticTranscoderPipeline:
+      - property: "tag:Protected"
+        value: "true"
+      ElasticacheCacheCluster:
+      - property: "tag:Protected"
+        value: "true"
+      ElasticacheReplicationGroup:
+      - property: "tag:Protected"
+        value: "true"
+      ElasticacheSubnetGroup:
+      - property: "tag:Protected"
+        value: "true"
+      FSxBackup:
+      - property: "tag:Protected"
+        value: "true"
+      FSxFileSystem:
+      - property: "tag:Protected"
+        value: "true"
+      FirehoseDeliveryStream:
+      - property: "tag:Protected"
+        value: "true"
+      GlueClassifier:
+      - property: "tag:Protected"
+        value: "true"
+      GlueConnection:
+      - property: "tag:Protected"
+        value: "true"
+      GlueCrawler:
+      - property: "tag:Protected"
+        value: "true"
+      GlueDatabase:
+      - property: "tag:Protected"
+        value: "true"
+      GlueDevEndpoint:
+      - property: "tag:Protected"
+        value: "true"
+      GlueJob:
+      - property: "tag:Protected"
+        value: "true"
+      GlueTrigger:
+      - property: "tag:Protected"
+        value: "true"
+      IAMGroup:
+      - property: "tag:Protected"
+        value: "true"
+      IAMGroupPolicy:
+      - property: "tag:Protected"
+        value: "true"
+      IAMGroupPolicyAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      IAMInstanceProfile:
+      - property: "tag:Protected"
+        value: "true"
+      IAMInstanceProfileRole:
+      - property: "tag:Protected"
+        value: "true"
+      IAMLoginProfile:
+      - property: "tag:Protected"
+        value: "true"
+      IAMOpenIDConnectProvider:
+      - property: "tag:Protected"
+        value: "true"
+      IAMPolicy:
+      - property: "tag:Protected"
+        value: "true"
+      IAMRole:
+      - property: "tag:Protected"
+        value: "true"
+      IAMRolePolicy:
+      - property: "tag:Protected"
+        value: "true"
+      IAMRolePolicyAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      IAMSAMLProvider:
+      - property: "tag:Protected"
+        value: "true"
+      IAMServerCertificate:
+      - property: "tag:Protected"
+        value: "true"
+      IAMServiceSpecificCredential:
+      - property: "tag:Protected"
+        value: "true"
+      IAMUser:
+      - property: "tag:Protected"
+        value: "true"
+      IAMUserAccessKey:
+      - property: "tag:Protected"
+        value: "true"
+      IAMUserGroupAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      IAMUserPolicy:
+      - property: "tag:Protected"
+        value: "true"
+      IAMUserPolicyAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      IAMVirtualMFADevice:
+      - property: "tag:Protected"
+        value: "true"
+      IoTAuthorizer:
+      - property: "tag:Protected"
+        value: "true"
+      IoTCACertificate:
+      - property: "tag:Protected"
+        value: "true"
+      IoTCertificate:
+      - property: "tag:Protected"
+        value: "true"
+      IoTJob:
+      - property: "tag:Protected"
+        value: "true"
+      IoTOTAUpdate:
+      - property: "tag:Protected"
+        value: "true"
+      IoTPolicy:
+      - property: "tag:Protected"
+        value: "true"
+      IoTRoleAlias:
+      - property: "tag:Protected"
+        value: "true"
+      IoTStream:
+      - property: "tag:Protected"
+        value: "true"
+      IoTThing:
+      - property: "tag:Protected"
+        value: "true"
+      IoTThingGroup:
+      - property: "tag:Protected"
+        value: "true"
+      IoTThingType:
+      - property: "tag:Protected"
+        value: "true"
+      IoTThingTypeState:
+      - property: "tag:Protected"
+        value: "true"
+      IoTTopicRule:
+      - property: "tag:Protected"
+        value: "true"
+      KMSAlias:
+      - property: "tag:Protected"
+        value: "true"
+      KMSKey:
+      - property: "tag:Protected"
+        value: "true"
+      KinesisAnalyticsApplication:
+      - property: "tag:Protected"
+        value: "true"
+      KinesisStream:
+      - property: "tag:Protected"
+        value: "true"
+      KinesisVideoProject:
+      - property: "tag:Protected"
+        value: "true"
+      LambdaEventSourceMapping:
+      - property: "tag:Protected"
+        value: "true"
+      LambdaFunction:
+      - property: "tag:Protected"
+        value: "true"
+      LaunchConfiguration:
+      - property: "tag:Protected"
+        value: "true"
+      LifecycleHook:
+      - property: "tag:Protected"
+        value: "true"
+      LightsailDisk:
+      - property: "tag:Protected"
+        value: "true"
+      LightsailDomain:
+      - property: "tag:Protected"
+        value: "true"
+      LightsailInstance:
+      - property: "tag:Protected"
+        value: "true"
+      LightsailKeyPair:
+      - property: "tag:Protected"
+        value: "true"
+      LightsailLoadBalancer:
+      - property: "tag:Protected"
+        value: "true"
+      LightsailStaticIP:
+      - property: "tag:Protected"
+        value: "true"
+      MQBroker:
+      - property: "tag:Protected"
+        value: "true"
+      MSKCluster:
+      - property: "tag:Protected"
+        value: "true"
+      MachineLearningBranchPrediction:
+      - property: "tag:Protected"
+        value: "true"
+      MachineLearningDataSource:
+      - property: "tag:Protected"
+        value: "true"
+      MachineLearningEvaluation:
+      - property: "tag:Protected"
+        value: "true"
+      MachineLearningMLModel:
+      - property: "tag:Protected"
+        value: "true"
+      MediaConvertJobTemplate:
+      - property: "tag:Protected"
+        value: "true"
+      MediaConvertPreset:
+      - property: "tag:Protected"
+        value: "true"
+      MediaConvertQueue:
+      - property: "tag:Protected"
+        value: "true"
+      MediaLiveChannel:
+      - property: "tag:Protected"
+        value: "true"
+      MediaLiveInput:
+      - property: "tag:Protected"
+        value: "true"
+      MediaLiveInputSecurityGroup:
+      - property: "tag:Protected"
+        value: "true"
+      MediaPackageChannel:
+      - property: "tag:Protected"
+        value: "true"
+      MediaPackageOriginEndpoint:
+      - property: "tag:Protected"
+        value: "true"
+      MediaStoreContainer:
+      - property: "tag:Protected"
+        value: "true"
+      MediaStoreDataItems:
+      - property: "tag:Protected"
+        value: "true"
+      MediaTailorConfiguration:
+      - property: "tag:Protected"
+        value: "true"
+      MobileProject:
+      - property: "tag:Protected"
+        value: "true"
+      NeptuneCluster:
+      - property: "tag:Protected"
+        value: "true"
+      NeptuneInstance:
+      - property: "tag:Protected"
+        value: "true"
+      NetpuneSnapshot:
+      - property: "tag:Protected"
+        value: "true"
+      OpsWorksApp:
+      - property: "tag:Protected"
+        value: "true"
+      OpsWorksCMBackup:
+      - property: "tag:Protected"
+        value: "true"
+      OpsWorksCMServer:
+      - property: "tag:Protected"
+        value: "true"
+      OpsWorksCMServerState:
+      - property: "tag:Protected"
+        value: "true"
+      OpsWorksInstance:
+      - property: "tag:Protected"
+        value: "true"
+      OpsWorksLayer:
+      - property: "tag:Protected"
+        value: "true"
+      OpsWorksUserProfile:
+      - property: "tag:Protected"
+        value: "true"
+      RDSDBCluster:
+      - property: "tag:Protected"
+        value: "true"
+      RDSDBClusterParameterGroup:
+      - property: "tag:Protected"
+        value: "true"
+      RDSDBParameterGroup:
+      - property: "tag:Protected"
+        value: "true"
+      RDSDBSubnetGroup:
+      - property: "tag:Protected"
+        value: "true"
+      RDSInstance:
+      - property: "tag:Protected"
+        value: "true"
+      RDSSnapshot:
+      - property: "tag:Protected"
+        value: "true"
+      RedshiftCluster:
+      - property: "tag:Protected"
+        value: "true"
+      RedshiftParameterGroup:
+      - property: "tag:Protected"
+        value: "true"
+      RedshiftSnapshot:
+      - property: "tag:Protected"
+        value: "true"
+      RedshiftSubnetGroup:
+      - property: "tag:Protected"
+        value: "true"
+      RekognitionCollection:
+      - property: "tag:Protected"
+        value: "true"
+      ResourceGroupGroup:
+      - property: "tag:Protected"
+        value: "true"
+      RoboMakerDeploymentJob:
+      - property: "tag:Protected"
+        value: "true"
+      RoboMakerFleet:
+      - property: "tag:Protected"
+        value: "true"
+      RoboMakerRobot:
+      - property: "tag:Protected"
+        value: "true"
+      RoboMakerRobotApplication:
+      - property: "tag:Protected"
+        value: "true"
+      RoboMakerSimulationApplication:
+      - property: "tag:Protected"
+        value: "true"
+      RoboMakerSimulationJob:
+      - property: "tag:Protected"
+        value: "true"
+      Route53HostedZone:
+      - property: "tag:Protected"
+        value: "true"
+      Route53ResourceRecordSet:
+      - property: "tag:Protected"
+        value: "true"
+      S3Bucket:
+      - property: "tag:Protected"
+        value: "true"
+      S3MultipartUpload:
+      - property: "tag:Protected"
+        value: "true"
+      S3Object:
+      - property: "tag:Protected"
+        value: "true"
+      SESConfigurationSet:
+      - property: "tag:Protected"
+        value: "true"
+      SESIdentity:
+      - property: "tag:Protected"
+        value: "true"
+      SESReceiptFilter:
+      - property: "tag:Protected"
+        value: "true"
+      SESReceiptRuleSet:
+      - property: "tag:Protected"
+        value: "true"
+      SESTemplate:
+      - property: "tag:Protected"
+        value: "true"
+      SFNStateMachine:
+      - property: "tag:Protected"
+        value: "true"
+      SNSEndpoint:
+      - property: "tag:Protected"
+        value: "true"
+      SNSPlatformApplication:
+      - property: "tag:Protected"
+        value: "true"
+      SNSSubscription:
+      - property: "tag:Protected"
+        value: "true"
+      SNSTopic:
+      - property: "tag:Protected"
+        value: "true"
+      SQSQueue:
+      - property: "tag:Protected"
+        value: "true"
+      SSMActivation:
+      - property: "tag:Protected"
+        value: "true"
+      SSMAssociation:
+      - property: "tag:Protected"
+        value: "true"
+      SSMDocument:
+      - property: "tag:Protected"
+        value: "true"
+      SSMMaintenanceWindow:
+      - property: "tag:Protected"
+        value: "true"
+      SSMParameter:
+      - property: "tag:Protected"
+        value: "true"
+      SSMPatchBaseline:
+      - property: "tag:Protected"
+        value: "true"
+      SSMResourceDataSync:
+      - property: "tag:Protected"
+        value: "true"
+      SageMakerEndpoint:
+      - property: "tag:Protected"
+        value: "true"
+      SageMakerEndpointConfig:
+      - property: "tag:Protected"
+        value: "true"
+      SageMakerModel:
+      - property: "tag:Protected"
+        value: "true"
+      SageMakerNotebookInstance:
+      - property: "tag:Protected"
+        value: "true"
+      SageMakerNotebookInstanceState:
+      - property: "tag:Protected"
+        value: "true"
+      SecretsManagerSecret:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogConstraintPortfolioAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogPortfolio:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogPortfolioProductAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogPortfolioShareAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogPrincipalPortfolioAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogProduct:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogProvisionedProduct:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogTagOption:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceCatalogTagOptionPortfolioAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceDiscoveryInstance:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceDiscoveryNamespace:
+      - property: "tag:Protected"
+        value: "true"
+      ServiceDiscoveryService:
+      - property: "tag:Protected"
+        value: "true"
+      SimpleDBDomain:
+      - property: "tag:Protected"
+        value: "true"
+      StorageGatewayFileShare:
+      - property: "tag:Protected"
+        value: "true"
+      StorageGatewayGateway:
+      - property: "tag:Protected"
+        value: "true"
+      StorageGatewayTape:
+      - property: "tag:Protected"
+        value: "true"
+      StorageGatewayVolume:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalByteMatchSet:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalByteMatchSetIP:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalIPSet:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalIPSetIP:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRateBasedRule:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRateBasedRulePredicate:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRegexMatchSet:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRegexMatchTuple:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRegexPatternSet:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRegexPatternString:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRule:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalRulePredicate:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalWebACL:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRegionalWebACLRuleAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      WAFRule:
+      - property: "tag:Protected"
+        value: "true"
+      WAFWebACL:
+      - property: "tag:Protected"
+        value: "true"
+      WAFWebACLRuleAttachment:
+      - property: "tag:Protected"
+        value: "true"
+      WorkLinkFleet:
+      - property: "tag:Protected"
+        value: "true"
+      WorkSpacesWorkspace:
+      - property: "tag:Protected"
+        value: "true"

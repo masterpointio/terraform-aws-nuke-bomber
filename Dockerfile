@@ -1,19 +1,28 @@
+FROM quay.io/rebuy/aws-nuke:latest as aws_nuke
+
 FROM ubuntu:latest
 
-ENV CLOUD_NUKE_VERSION=v0.1.18
+RUN apt-get update \
+    && apt-get install -y ca-certificates expect \
+    && rm -rf /var/cache/apk/*
 
+RUN useradd --user-group --system --create-home aws-nuke
+USER aws-nuke
+WORKDIR "/home/aws-nuke/"
 
-RUN apt-get update && apt-get install -y wget
+COPY --from=aws_nuke /usr/local/bin/* /usr/local/bin/
+COPY ./nuke-config.yml /home/aws-nuke/nuke-config.yml
+COPY ./bomber.sh /home/aws-nuke/bomber.sh
 
-RUN useradd --user-group --system --create-home bomber
-USER bomber
-WORKDIR /home/bomber/
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 
-RUN wget -q --show-progress --progress=dot "https://github.com/gruntwork-io/cloud-nuke/releases/download/${CLOUD_NUKE_VERSION}/cloud-nuke_linux_386" \
-    && mkdir -p ~/bin \
-    && mv ./cloud-nuke_linux_386 ~/bin/cloud-nuke \
-    && chmod u+x ~/bin/cloud-nuke
+ARG ACCOUNT_ID
+ARG ACCOUNT_ALIAS
+ENV ACCOUNT_ALIAS=$ACCOUNT_ALIAS
+RUN sed -i "s/ACCOUNT_ID_TO_NUKE/$ACCOUNT_ID/g" /home/aws-nuke/nuke-config.yml
 
-ENV PATH="/home/bomber/bin/:${PATH}"
-
-CMD ["cloud-nuke", "aws", "--dry-run"]
+ENTRYPOINT []
+CMD ["/home/aws-nuke/bomber.sh"]
