@@ -1,5 +1,7 @@
 #!/usr/bin/expect -f
-# bomber.sh
+
+# For expect debugging, uncomment the following:
+# exp_internal 1
 
 # Set Expect Timeout to 5 minutes
 set timeout 300
@@ -22,8 +24,9 @@ send "$ACCOUNT_ALIAS\r"
 
 expect {
     "Do you want to continue? Enter account alias to continue." {
+      expect ">"
       send "$ACCOUNT_ALIAS\r"
-      exit 0;
+      expect eof
     }
     "Provide --no-dry-run to actually destroy resources." {
       puts "Dry Run Complete!"
