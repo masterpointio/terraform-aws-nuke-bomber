@@ -86,6 +86,7 @@ module "vpc" {
   stage      = var.stage
   name       = var.name
   cidr_block = var.vpc_cidr_block
+  tags       = module.base_label.tags
 }
 
 module "subnets" {
@@ -98,6 +99,18 @@ module "subnets" {
   cidr_block           = module.vpc.vpc_cidr_block
   nat_gateway_enabled  = var.nat_gateway_enabled
   nat_instance_enabled = ! var.nat_gateway_enabled
+  tags                 = module.base_label.tags
+}
+
+# We create a new Main Route Table, so we can ensure it has tags (to allow filtering).
+resource "aws_route_table" "new_main" {
+  vpc_id = module.vpc.vpc_id
+  tags   = module.base_label.tags
+}
+
+resource "aws_main_route_table_association" "default" {
+  vpc_id         = module.vpc.vpc_id
+  route_table_id = aws_route_table.new_main.id
 }
 
 resource "aws_security_group_rule" "allow_egress" {
@@ -134,10 +147,11 @@ resource "aws_cloudwatch_event_rule" "default" {
   # Example, "cron(0 20 * * ? *)" or "rate(5 minutes)".
   # https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
   schedule_expression = var.schedule_expression
+  tags                = module.event_label.tags
 }
 
 resource "aws_cloudwatch_event_target" "default" {
-  target_id = module.event_label.id
+  target_id = "${module.base_label.id}-run-task"
   arn       = aws_ecs_cluster.default.arn
   rule      = aws_cloudwatch_event_rule.default.name
   role_arn  = aws_iam_role.ecs_events.arn
