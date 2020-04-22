@@ -20,8 +20,5 @@ ENV ACCOUNT_ALIAS=$ACCOUNT_ALIAS
 ARG NOT_A_DRILL="false"
 ENV NOT_A_DRILL=$NOT_A_DRILL
 
-ARG ACCOUNT_ID
-RUN sed -i "s/ACCOUNT_ID_TO_NUKE/$ACCOUNT_ID/g" /home/aws-nuke/nuke-config.yml
-
 ENTRYPOINT []
 CMD ["/home/aws-nuke/bomber.sh"]

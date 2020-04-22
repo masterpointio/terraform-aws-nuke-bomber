@@ -1,12 +1,24 @@
 ---
 regions:
-- us-east-1
+- TODO_YOUR_REGION
 
 account-blacklist:
-- 1234567890
+- TODO_YOUR_PROD_ACCOUNT_ID
+
+resource-types:
+  excludes:
+  # These ML Resources are deprecated.
+  - MachineLearningMLModel
+  - MachineLearningBranchPrediction
+  - MachineLearningDataSource
+  - MachineLearningEvaluation
+  # No easy way to not remove the below types without messing up our bomber, so exclude entirely.
+  - EC2NetworkInterface
+  - EC2NetworkACL
+  - EC2DHCPOption
 
 accounts:
-  "ACCOUNT_ID_TO_NUKE":
+  TODO_YOUR_ACCOUNT_ID_TO_NUKE:
     filters:
       ACMCertificate:
       - property: "tag:Protected"
@@ -126,15 +138,21 @@ accounts:
       - property: "tag:Protected"
         value: "true"
       CloudWatchEventsRule:
+      - type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       CloudWatchEventsTarget:
+      - type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       CloudWatchLogsDestination:
       - property: "tag:Protected"
         value: "true"
       CloudWatchLogsLogGroup:
+      - type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       CodeBuildProject:
@@ -224,9 +242,6 @@ accounts:
       EC2CustomerGateway:
       - property: "tag:Protected"
         value: "true"
-      EC2DHCPOption:
-      - property: "tag:Protected"
-        value: "true"
       EC2Image:
       - property: "tag:Protected"
         value: "true"
@@ -237,7 +252,7 @@ accounts:
       - property: "tag:Protected"
         value: "true"
       EC2InternetGatewayAttachment:
-      - property: "tag:Protected"
+      - property: "tag:igw:Protected"
         value: "true"
       EC2KeyPair:
       - property: "tag:Protected"
@@ -249,9 +264,9 @@ accounts:
       - property: "tag:Protected"
         value: "true"
       EC2NetworkACL:
-      - property: "tag:Protected"
-        value: "true"
-      EC2NetworkInterface:
+      - property: Name
+        type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       EC2PlacementGroup:
@@ -303,9 +318,13 @@ accounts:
       - property: "tag:Protected"
         value: "true"
       ECRRepository:
+      - type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       ECSCluster:
+      - type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       ECSClusterInstance:
@@ -315,6 +334,8 @@ accounts:
       - property: "tag:Protected"
         value: "true"
       ECSTaskDefinition:
+      - type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       EFSFileSystem:
@@ -606,6 +627,8 @@ accounts:
       - property: "tag:Protected"
         value: "true"
       OpsWorksUserProfile:
+      - type: contains
+        value: nuke-bomber
       - property: "tag:Protected"
         value: "true"
       RDSDBCluster:
