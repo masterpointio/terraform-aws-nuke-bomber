@@ -71,12 +71,16 @@ terraform {
   }
 }
 
+locals {
+  tags_with_protected = merge({ Protected = "true" }, var.tags)
+}
+
 module "base_label" {
   source    = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
   namespace = var.namespace
   stage     = var.stage
   name      = var.name
-  tags      = merge({ Protected = "true" }, var.tags)
+  tags      = local.tags_with_protected
 }
 
 module "task_label" {
@@ -85,7 +89,7 @@ module "task_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["task"]
-  tags       = merge({ Protected = "true" }, var.tags)
+  tags       = local.tags_with_protected
 }
 
 module "exec_label" {
@@ -94,7 +98,7 @@ module "exec_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["exec"]
-  tags       = merge({ Protected = "true" }, var.tags)
+  tags       = local.tags_with_protected
 }
 
 module "cloudwatch_label" {
@@ -103,7 +107,7 @@ module "cloudwatch_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["cloudwatch"]
-  tags       = merge({ Protected = "true" }, var.tags)
+  tags       = local.tags_with_protected
 }
 
 module "event_label" {
@@ -112,7 +116,7 @@ module "event_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["event"]
-  tags       = merge({ Protected = "true" }, var.tags)
+  tags       = local.tags_with_protected
 }
 
 module "log_group_label" {
@@ -121,7 +125,7 @@ module "log_group_label" {
   stage      = var.stage
   name       = var.name
   attributes = ["logs"]
-  tags       = merge({ Protected = "true" }, var.tags)
+  tags       = local.tags_with_protected
 }
 
 ## NETWORK

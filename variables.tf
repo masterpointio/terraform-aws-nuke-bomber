@@ -25,7 +25,6 @@ variable "tags" {
 }
 
 variable "region" {
-  default     = "us-east-1"
   type        = string
   description = "The AWS Region to deploy these resources to."
 }
@@ -46,7 +45,6 @@ variable "log_retention_in_days" {
 ###########
 
 variable "availability_zones" {
-  default     = ["us-east-1a"]
   type        = list(string)
   description = "List of Availability Zones where subnets will be created."
 }

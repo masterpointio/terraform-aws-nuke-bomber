@@ -1,10 +1,12 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
 module "nuke_bomber" {
-  source    = "../.."
-  namespace = var.namespace
+  source             = "../.."
+  namespace          = var.namespace
+  region             = var.region
+  availability_zones = var.availability_zones
 
   # NOTE: 5 minutes is way too often. This is just for testing / example purposes.
   schedule_expression = "rate(5 minutes)"

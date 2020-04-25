@@ -79,7 +79,7 @@ module "nuke_bomber" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| availability\_zones | List of Availability Zones where subnets will be created. | `list(string)` | <pre>[<br>  "us-east-1a"<br>]</pre> | no |
+| availability\_zones | List of Availability Zones where subnets will be created. | `list(string)` | n/a | yes |
 | command | The CMD to execute on the ECS container. Override this to actually execute the nuke. | `list(string)` | <pre>[<br>  "-c",<br>  "/home/aws-nuke/nuke-config.yml",<br>  "--force",<br>  "--force-sleep",<br>  "3"<br>]</pre> | no |
 | container\_cpu | The container's CPU for the bomber task. | `number` | `256` | no |
 | container\_memory | The container's memory for the bomber task. | `number` | `512` | no |
@@ -88,7 +88,7 @@ module "nuke_bomber" {
 | name | Solution name, e.g. 'app' or 'jenkins' | `string` | `"bomber"` | no |
 | namespace | Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp' | `string` | n/a | yes |
 | nat\_gateway\_enabled | Whether to enable NAT Gateways. If false, then the application uses NAT Instances, which are much cheaper. | `bool` | `true` | no |
-| region | The AWS Region to deploy these resources to. | `string` | `"us-east-1"` | no |
+| region | The AWS Region to deploy these resources to. | `string` | n/a | yes |
 | schedule\_expression | The expression to determine the schedule on which to invoke the bomber. Useful information @ https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html. | `string` | `"rate(24 hours)"` | no |
 | stage | The environment that this infrastrcuture is being deployed to e.g. dev, stage, or prod | `string` | `"nuke"` | no |
 | tags | Additional tags (e.g. `map('BusinessUnit','XYZ')` | `map(string)` | `{}` | no |
