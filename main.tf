@@ -164,15 +164,6 @@ resource "aws_main_route_table_association" "default" {
   route_table_id = aws_route_table.new_main.id
 }
 
-resource "aws_security_group_rule" "allow_egress" {
-  type              = "egress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = module.vpc.vpc_default_security_group_id
-}
-
 ## SUPPORTING
 ##############
 
