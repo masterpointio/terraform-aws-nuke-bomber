@@ -1,21 +1,39 @@
 ## GENERAL
 ###########
 
+variable "namespace" {
+  type        = string
+  description = "Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp'"
+}
+
 variable "stage" {
   default     = "nuke"
   type        = string
   description = "The environment that this infrastrcuture is being deployed to e.g. dev, stage, or prod"
 }
 
-variable "namespace" {
-  type        = string
-  description = "Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp'"
-}
-
 variable "name" {
   default     = "bomber"
   type        = string
   description = "Solution name, e.g. 'app' or 'jenkins'"
+}
+
+variable "environment" {
+  type        = string
+  default     = ""
+  description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
+}
+
+variable "delimiter" {
+  type        = string
+  default     = "-"
+  description = "Delimiter to be used between `namespace`, `stage`, `name` and `attributes`"
+}
+
+variable "attributes" {
+  type        = list(string)
+  default     = []
+  description = "Additional attributes (e.g. `1`)"
 }
 
 variable "tags" {

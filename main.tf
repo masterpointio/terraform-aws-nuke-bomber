@@ -76,67 +76,83 @@ locals {
 }
 
 module "base_label" {
-  source    = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
-  namespace = var.namespace
-  stage     = var.stage
-  name      = var.name
-  tags      = local.tags_with_protected
+  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
+  namespace   = var.namespace
+  stage       = var.stage
+  name        = var.name
+  environment = var.environment
+  delimiter   = var.delimiter
+  attributes  = var.attributes
+  tags        = local.tags_with_protected
 }
 
 module "task_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = ["task"]
-  tags       = local.tags_with_protected
+  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
+  namespace   = var.namespace
+  stage       = var.stage
+  name        = var.name
+  environment = var.environment
+  delimiter   = var.delimiter
+  attributes  = compact(concat(["task"], var.attributes))
+  tags        = local.tags_with_protected
 }
 
 module "exec_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = ["exec"]
-  tags       = local.tags_with_protected
+  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
+  namespace   = var.namespace
+  stage       = var.stage
+  name        = var.name
+  environment = var.environment
+  delimiter   = var.delimiter
+  attributes  = compact(concat(["exec"], var.attributes))
+  tags        = local.tags_with_protected
 }
 
 module "cloudwatch_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = ["cloudwatch"]
-  tags       = local.tags_with_protected
+  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
+  namespace   = var.namespace
+  stage       = var.stage
+  name        = var.name
+  environment = var.environment
+  delimiter   = var.delimiter
+  attributes  = compact(concat(["cloudwatch"], var.attributes))
+  tags        = local.tags_with_protected
 }
 
 module "event_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = ["event"]
-  tags       = local.tags_with_protected
+  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
+  namespace   = var.namespace
+  stage       = var.stage
+  name        = var.name
+  environment = var.environment
+  delimiter   = var.delimiter
+  attributes  = compact(concat(["event"], var.attributes))
+  tags        = local.tags_with_protected
 }
 
 module "log_group_label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  attributes = ["logs"]
-  tags       = local.tags_with_protected
+  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.16.0"
+  namespace   = var.namespace
+  stage       = var.stage
+  name        = var.name
+  environment = var.environment
+  delimiter   = var.delimiter
+  attributes  = compact(concat(["logs"], var.attributes))
+  tags        = local.tags_with_protected
 }
 
 ## NETWORK
 ###########
 
 module "vpc" {
-  source     = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.10.0"
-  namespace  = var.namespace
-  stage      = var.stage
-  name       = var.name
-  cidr_block = var.vpc_cidr_block
+  source      = "git::https://github.com/cloudposse/terraform-aws-vpc.git?ref=tags/0.10.0"
+  namespace   = var.namespace
+  stage       = var.stage
+  name        = var.name
+  environment = var.environment
+  delimiter   = var.delimiter
+  attributes  = var.attributes
+  cidr_block  = var.vpc_cidr_block
 
   enable_default_security_group_with_custom_rules = false
 
@@ -148,6 +164,9 @@ module "subnets" {
   availability_zones   = var.availability_zones
   namespace            = var.namespace
   stage                = var.stage
+  environment          = var.environment
+  delimiter            = var.delimiter
+  attributes           = var.attributes
   vpc_id               = module.vpc.vpc_id
   igw_id               = module.vpc.igw_id
   cidr_block           = module.vpc.vpc_cidr_block

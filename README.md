@@ -79,11 +79,14 @@ module "nuke_bomber" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| attributes | Additional attributes (e.g. `1`) | `list(string)` | `[]` | no |
 | availability\_zones | List of Availability Zones where subnets will be created. | `list(string)` | n/a | yes |
 | command | The CMD to execute on the ECS container. Override this to actually execute the nuke. | `list(string)` | <pre>[<br>  "-c",<br>  "/home/aws-nuke/nuke-config.yml",<br>  "--force",<br>  "--force-sleep",<br>  "3"<br>]</pre> | no |
 | container\_cpu | The container's CPU for the bomber task. | `number` | `256` | no |
 | container\_memory | The container's memory for the bomber task. | `number` | `512` | no |
 | container\_memory\_reservation | The container's memory reservation for the bomber task. | `number` | `512` | no |
+| delimiter | Delimiter to be used between `namespace`, `stage`, `name` and `attributes` | `string` | `"-"` | no |
+| environment | Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT' | `string` | `""` | no |
 | log\_retention\_in\_days | The number of days to retain the bomber task logs. | `number` | `30` | no |
 | name | Solution name, e.g. 'app' or 'jenkins' | `string` | `"bomber"` | no |
 | namespace | Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp' | `string` | n/a | yes |
