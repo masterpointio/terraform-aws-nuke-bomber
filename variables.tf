@@ -67,7 +67,7 @@ variable "nat_gateway_enabled" {
 #######
 
 variable "command" {
-  default     = ["/home/aws-nuke/bomber.sh"]
+  default     = ["-c", "/home/aws-nuke/nuke-config.yml", "--force", "--force-sleep", "3"]
   type        = list(string)
   description = "The CMD to execute on the ECS container. Override this to actually execute the nuke."
 }

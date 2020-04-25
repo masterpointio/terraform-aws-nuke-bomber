@@ -7,11 +7,16 @@
  * :bomb:
  * :cloud:
  *
- * This terraform module deploys a VPC, ECS Cluster, and Scheduled ECS Fargate Task to repeatedly execute [`aws-nuke`](https://github.com/rebuy-de/aws-nuke) (removes all resources) against the running AWS Account. This is intended for usage in "Test Accounts" where developers or CI / CD are typically deploying infrastructure that needs to be cleaned up often, otherwise it would incur unnecessary costs.
+ * This terraform module deploys a VPC, ECS Cluster, and Scheduled ECS Fargate Task to repeatedly execute [`aws-nuke`](https://github.com/rebuy-de/aws-nuke), which removes all resources in the given AWS Account. This is intended for usage in "Test Accounts" where developers or CI / CD are typically deploying infrastructure that needs to be cleaned up often, otherwise it would incur unnecessary costs.
  *
- * ##### NOTE: As is stated multiple times on the `aws-nuke` repo, this project should similarly be used with extreme caution for obvious reasons. You should explicitly add all AWS Account IDs that you *don't* want nuked into oblivion to the exclude section of your `nuke-config.yml` file and be sure to properly configure the filters in that same file to keep around any resources which you don't want removed. Always run this project in dry-run mode first (on by default) and only turn on `NOT_A_DRILL` when you're sure you've configured everything correctly to your liking. This project and its maintainers are not responsible for not following those steps.
+ * ##### NOTE: As is stated multiple times on the `aws-nuke` repo, this project should similarly be used with extreme caution for obvious reasons. You should explicitly add all AWS Account IDs that you *don't* want nuked to the exclude section of your `nuke-config.yml` file and be sure to properly configure the filters in that same file to keep around any resources which you don't want removed. Always run this project in dry-run mode first (on by default) and only override the terraform `command` variable to use `--no-dry-run` once you've ensured everything is running properly. This project and its maintainers are not responsible for not following those steps.
  *
- * Big shout out to the folks [@cloudposse](https://github.com/cloudposse), who have awesome open source modules which this repo uses heavily!
+ * Big shout out to the following projects which this project uses/depends on!
+ * 1. [aws-nuke](https://github.com/rebuy-de/aws-nuke)
+ * 1. [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
+ * 1. [terraform-aws-vpc](https://github.com/cloudposse/terraform-aws-vpc)
+ * 1. [terraform-aws-dynamic-subnets](https://github.com/cloudposse/terraform-aws-dynamic-subnets )
+ * 1. [terraform-aws-ecs-container-definition](https://github.com/cloudposse/terraform-aws-ecs-container-definition)
  *
  * ## Usage
  *
@@ -34,25 +39,28 @@
  *
  * Next, to get the ECS Task running, you need to do the following:
  *
+ * 1. Clone this repo and change into this directory:
+ *     - `git clone git@github.com:masterpointio/terraform-aws-nuke-bomber.git && cd terraform-aws-nuke-bomber`
  * 1. Copy nuke-config example:
- *   - `cp nuke-config.yml.example nuke-config.yml`
+ *     - `cp nuke-config.yml.example nuke-config.yml`
  * 1. Replace your `nuke-config.yml` `TODO_` fields with your Account ID, Region, and Production Account ID(s).
  * 1. Check over the config. Make sure to exclude or filter out anything you don't want removed from your account!
- * 1. From the root directory, build the docker image:
- *  - `docker build . -t bomber:latest --build-arg ACCOUNT_ALIAS=your-account-alias`
- * 1. Grab the ECR Repo URL from the module output:
- *   - `export ECR_REPO=$(terraform output ecr_repo_url)`
- * 1. Tag your bomber image:
- *   - `docker tag bomber:latest ${ECR_REPO}:latest`
- * 1. Push your bomber image to ECR:
- *   - `docker push ${ECR_REPO}:latest`
- *   - NOTE: Make sure you've got an ECR Push token via:
+ * 1. From your terraform project direct, grab the ECR Repo URL from the terraform output:
+ *     - `export ECR_REPO=$(terraform output ecr_repo_url)`
+ * 1. Make sure you've got an ECR Push token via:
  *     - `eval $(aws ecr get-login --region us-east-1 --no-include-email)`
+ * 1. Build, tag, and push the Docker image:
+ *     - `make`
  * 1. Check out your logs in CloudWatch to watch the bomb drop!
  *
- * Noticed that nothing got deleted even though your bomber should've nuked the account? Huh, looks like that was just a drill... try building again with the `NOT_A_DRILL` arg and then tag and push your image again:
- * ```bash
- * docker build . -t bomber:latest --build-arg ACCOUNT_ALIAS=your-account-alias --build-arg NOT_A_DRILL=true
+ * Noticed that nothing got deleted even though your bomber should've nuked the account? That was just a drill... update your nuke_bomber module with the following and `terraform apply` the change to fire for effect:
+ * ```hcl
+ * module "nuke_bomber" {
+ *   source    = "git::https://github.com/masterpointio/terraform-aws-nuke-bomber.git?ref=tags/0.1.0"
+ *   namespace = var.namespace
+ *   command   = ["-c", "/home/aws-nuke/nuke-config.yml", "--force", "--force-sleep", "3", "--no-dry-run"]
+ *   schedule_expression = "rate(48 hours)"
+ * }
  * ```
  */
 
