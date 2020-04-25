@@ -74,7 +74,7 @@ variable "vpc_cidr_block" {
 }
 
 variable "nat_gateway_enabled" {
-  default     = true
+  default     = false
   type        = bool
   description = "Whether to enable NAT Gateways. If false, then the application uses NAT Instances, which are much cheaper."
 }
