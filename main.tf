@@ -137,7 +137,10 @@ module "vpc" {
   stage      = var.stage
   name       = var.name
   cidr_block = var.vpc_cidr_block
-  tags       = module.base_label.tags
+
+  enable_default_security_group_with_custom_rules = false
+
+  tags = module.base_label.tags
 }
 
 module "subnets" {
@@ -151,8 +154,6 @@ module "subnets" {
   nat_gateway_enabled  = var.nat_gateway_enabled
   nat_instance_enabled = ! var.nat_gateway_enabled
   tags                 = module.base_label.tags
-
-  enable_default_security_group_with_custom_rules = false
 }
 
 # We create a new Main Route Table, so we can ensure it has tags (to allow filtering).
