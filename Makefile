@@ -13,8 +13,8 @@ nuke-config.yml:
 build: nuke-config.yml
 	docker build . -t bomber:latest
 
-tag: build .check-env-vars
+tag: .check-env-vars
 	docker tag bomber:latest $(ECR_REPO):latest
 
-push: tag .check-env-vars
+push: .check-env-vars
 	docker push $(ECR_REPO):latest
