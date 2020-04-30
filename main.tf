@@ -12,11 +12,11 @@
  * ##### NOTE: As is stated multiple times on the `aws-nuke` repo, this project should similarly be used with extreme caution for obvious reasons. You should explicitly add all AWS Account IDs that you *don't* want nuked to the exclude section of your `nuke-config.yml` file and be sure to properly configure the filters in that same file to keep around any resources which you don't want removed. Always run this project in dry-run mode first (on by default) and only override the terraform `command` variable to use `--no-dry-run` once you've ensured everything is running properly. This project and its maintainers are not responsible for not following those steps.
  *
  * Big shout out to the following projects which this project uses/depends on!
- * 1. [aws-nuke](https://github.com/rebuy-de/aws-nuke)
- * 1. [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
- * 1. [terraform-aws-vpc](https://github.com/cloudposse/terraform-aws-vpc)
- * 1. [terraform-aws-dynamic-subnets](https://github.com/cloudposse/terraform-aws-dynamic-subnets )
- * 1. [terraform-aws-ecs-container-definition](https://github.com/cloudposse/terraform-aws-ecs-container-definition)
+ * 1. [rebuy-de/aws-nuke](https://github.com/rebuy-de/aws-nuke)
+ * 1. [cloudposse/terraform-null-label](https://github.com/cloudposse/terraform-null-label)
+ * 1. [cloudposse/terraform-aws-vpc](https://github.com/cloudposse/terraform-aws-vpc)
+ * 1. [cloudposse/terraform-aws-dynamic-subnets](https://github.com/cloudposse/terraform-aws-dynamic-subnets )
+ * 1. [cloudposse/terraform-aws-ecs-container-definition](https://github.com/cloudposse/terraform-aws-ecs-container-definition)
  *
  * ## Usage
  *
